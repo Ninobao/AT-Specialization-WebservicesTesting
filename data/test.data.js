@@ -41,4 +41,25 @@ const bookingSchema = Joi.object({
   additionalneeds: Joi.string().valid("Jacuzzi").required(),
 });
 
-module.exports = { newBooking, updatedFields, updatedBooking, bookingSchema };
+const validHeader = {
+  "Content-Type": "application/json",
+  Accept: "application/json",
+};
+
+const basicHeader = {
+  "Content-Type": "application/json",
+};
+
+const basicAuthHeader = {
+  Authorization: "Basic YWRtaW46cGFzc3dvcmQxMjM=",
+};
+
+module.exports = {
+  newBooking,
+  updatedFields,
+  updatedBooking,
+  bookingSchema,
+  validHeader,
+  basicHeader,
+  basicAuthHeader,
+};
