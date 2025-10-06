@@ -1,57 +1,57 @@
-const Joi = require("joi");
+const Joi = require('joi');
 
 const newBooking = {
-  firstname: "Eric",
-  lastname: "RuizFlores",
+  firstname: 'Eric',
+  lastname: 'RuizFlores',
   totalprice: 111,
   depositpaid: true,
   bookingdates: {
-    checkin: "2024-05-05",
-    checkout: "2024-05-10",
+    checkin: '2024-05-05',
+    checkout: '2024-05-10',
   },
-  additionalneeds: "TV",
+  additionalneeds: 'TV',
 };
 
 const updatedFields = {
   totalprice: 222,
-  additionalneeds: "Breakfast",
+  additionalneeds: 'Breakfast',
 };
 
 const updatedBooking = {
-  firstname: "John",
-  lastname: "Doe",
+  firstname: 'John',
+  lastname: 'Doe',
   totalprice: 333,
   depositpaid: false,
   bookingdates: {
-    checkin: "2024-06-06",
-    checkout: "2024-06-10",
+    checkin: '2024-06-06',
+    checkout: '2024-06-10',
   },
-  additionalneeds: "Jacuzzi",
+  additionalneeds: 'Jacuzzi',
 };
 
 const bookingSchema = Joi.object({
-  firstname: Joi.string().valid("John").required(),
-  lastname: Joi.string().valid("Doe").required(),
+  firstname: Joi.string().valid('John').required(),
+  lastname: Joi.string().valid('Doe').required(),
   totalprice: Joi.number().valid(333).required(),
   depositpaid: Joi.boolean().valid(false).required(),
   bookingdates: Joi.object({
-    checkin: Joi.string().valid("2024-06-06").required(),
-    checkout: Joi.string().valid("2024-06-10").required(),
+    checkin: Joi.string().valid('2024-06-06').required(),
+    checkout: Joi.string().valid('2024-06-10').required(),
   }).required(),
-  additionalneeds: Joi.string().valid("Jacuzzi").required(),
+  additionalneeds: Joi.string().valid('Jacuzzi').required(),
 });
 
 const validHeader = {
-  "Content-Type": "application/json",
-  Accept: "application/json",
+  'Content-Type': 'application/json',
+  Accept: 'application/json',
 };
 
 const basicHeader = {
-  "Content-Type": "application/json",
+  'Content-Type': 'application/json',
 };
 
 const basicAuthHeader = {
-  Authorization: "Basic YWRtaW46cGFzc3dvcmQxMjM=",
+  Authorization: 'Basic YWRtaW46cGFzc3dvcmQxMjM=',
 };
 
 module.exports = {

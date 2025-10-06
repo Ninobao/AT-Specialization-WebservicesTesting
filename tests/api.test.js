@@ -1,6 +1,6 @@
-const axios = require("axios");
+const axios = require('axios');
 
-const testData = require("../data/test.data.js");
+const testData = require('../data/test.data.js');
 const {
   newBooking,
   updatedBooking,
@@ -11,12 +11,12 @@ const {
   basicAuthHeader,
 } = testData;
 
-const { baseURL, admin } = require("../config.js");
+const { baseURL, admin } = require('../config.js');
 
 let newBookingID; // BookingID for CRUD
 
-describe("restful-booker API tests", () => {
-  it("should create a new booking", async () => {
+describe('restful-booker API tests', () => {
+  it('should create a new booking', async () => {
     const response = await axios.post(`${baseURL}/booking`, newBooking, {
       headers: validHeader,
     });
@@ -24,8 +24,8 @@ describe("restful-booker API tests", () => {
     newBookingID = response.data.bookingid; // Used in following tests
 
     expect(response.status).toBe(200);
-    expect(response.headers["content-type"]).toContain("application/json");
-    expect(response.data).toHaveProperty("bookingid");
+    expect(response.headers['content-type']).toContain('application/json');
+    expect(response.data).toHaveProperty('bookingid');
   });
 
   it("should get the booking's IDs when filtering by name", async () => {
@@ -33,11 +33,11 @@ describe("restful-booker API tests", () => {
 
     expect(response.status).toBe(200);
     response.data.forEach((booking) => {
-      expect(booking).toHaveProperty("bookingid");
+      expect(booking).toHaveProperty('bookingid');
     });
   });
 
-  it("should partially update a booking", async () => {
+  it('should partially update a booking', async () => {
     const response = await axios.patch(`${baseURL}/booking/${newBookingID}`, updatedFields, {
       auth: admin, // Basic auth
       headers: validHeader,
@@ -45,10 +45,10 @@ describe("restful-booker API tests", () => {
 
     expect(response.status).toBe(200);
     expect(response.data.totalprice).toBe(222);
-    expect(response.data.additionalneeds).toBe("Breakfast");
+    expect(response.data.additionalneeds).toBe('Breakfast');
   });
 
-  it("should fully update a booking", async () => {
+  it('should fully update a booking', async () => {
     // Create token
     const responseToken = await axios.post(`${baseURL}/auth`, admin, {
       headers: basicHeader,
@@ -57,7 +57,7 @@ describe("restful-booker API tests", () => {
     const token = responseToken.data.token;
 
     // Update Booking
-    const response = await axios.put(baseURL + "/booking/" + newBookingID, updatedBooking, {
+    const response = await axios.put(baseURL + '/booking/' + newBookingID, updatedBooking, {
       headers: {
         ...validHeader,
         Cookie: `token=${token}`, // Token auth
@@ -70,14 +70,14 @@ describe("restful-booker API tests", () => {
     expect(error).toBeUndefined();
   });
 
-  it("should delete a booking", async () => {
+  it('should delete a booking', async () => {
     const response = await axios.delete(`${baseURL}/booking/${newBookingID}`, {
       headers: basicAuthHeader,
     });
     expect(response.status).toBe(201);
   });
 
-  it("should create auth token under 1 second", async () => {
+  it('should create auth token under 1 second', async () => {
     const start = Date.now();
 
     const responseToken = await axios.post(`${baseURL}/auth`, admin, {
