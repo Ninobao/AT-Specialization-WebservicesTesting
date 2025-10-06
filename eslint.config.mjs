@@ -11,6 +11,18 @@ export default defineConfig([
     extends: ['js/recommended'],
     languageOptions: { globals: globals.node },
     ignores: ['node_modules/', 'reports/'],
+    rules: {
+      'no-unused-vars': 1,
+      'no-undef': 1,
+    },
   },
-  { files: ['**/*.js'], languageOptions: { sourceType: 'commonjs' } },
+  {
+    files: ['**/*.js'],
+    languageOptions: { sourceType: 'commonjs' },
+    ignores: ['node_modules/', 'reports/'],
+    rules: {
+      'no-unused-vars': 1,
+      'no-undef': 1,
+    },
+  },
 ]);

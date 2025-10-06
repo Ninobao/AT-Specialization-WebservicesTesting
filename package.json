@@ -6,8 +6,8 @@
   "type": "commonjs",
   "scripts": {
     "test": "jest",
-    "lint": "npx eslint .",
-    "format": "npx prettier . --write"
+    "lint": "npx eslint . --fix",
+    "format": "npx prettier . --check"
   },
   "keywords": [],
   "author": "",
