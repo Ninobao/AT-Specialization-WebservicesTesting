@@ -6,7 +6,8 @@
   "type": "commonjs",
   "scripts": {
     "test": "jest",
-    "lint": "npx eslint . --fix",
+    "lint": "npx eslint .",
+    "lint:fix": "npx eslint . --fix",
     "format": "npx prettier . --write"
   },
   "keywords": [],
